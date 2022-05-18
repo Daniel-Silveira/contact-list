@@ -4,7 +4,7 @@ export const Button = styled.button`
   outline: none;
   border: none;
   padding: 1em;
-  background: rgba(0, 0, 0, 0.87);
+  background: ${({ theme }) => theme.button};
   color: #fff;
   cursor: pointer;
   border-radius: 8px;
@@ -12,6 +12,6 @@ export const Button = styled.button`
   box-shadow: 0px 5px 10px rgba(29, 31, 41, 0.15);
 
   &:hover {
-    background-color: #000;
+    background-color: ${({ theme }) => theme.button}90;
   }
 `;

@@ -27,7 +27,7 @@ export const Sidebar = (props: SidebarProps) => {
           active={!!isActive(item.path)}
           onClick={() => handleNavigate(item.path)}
         >
-          {item.icon && <item.icon size={20} color="#FF0075" />}
+          {item.icon && <item.icon size={20} />}
           <span>{item.title}</span>
         </Styled.Button>
       ))}

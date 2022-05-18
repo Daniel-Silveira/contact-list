@@ -6,16 +6,16 @@ export const Input = styled.input`
   height: 40px;
   border-radius: 6px;
   border: none;
-  background-color: #082032;
+  background-color: ${({ theme }) => theme.background};
   padding: 0px 16px;
   box-sizing: border-box;
-  color: #ff0075;
+  color: ${({ theme }) => theme.primaryColor};
   :focus {
-    border: 1px solid #ff0075;
+    border: 1px solid ${({ theme }) => theme.primaryColor};
   }
-  ${({ margin }: { margin?: string }) =>
-    margin &&
+  ${({ marginConfig }: { marginConfig?: string }) =>
+    marginConfig &&
     css`
-      ${margin}
+      ${marginConfig}
     `}
 `;

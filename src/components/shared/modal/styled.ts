@@ -6,7 +6,7 @@ export const Overlay = styled.div`
   height: 100vh;
   left: 0;
   top: 0;
-  background: #00000070;
+  background: ${({ theme }) => theme.overlay};
   position: absolute;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@ export const Overlay = styled.div`
 `;
 
 export const Container = styled(motion.div)`
-  background: #2c394b;
+  background: ${({ theme }) => theme.card};
   border-radius: 16px;
   padding: 1em;
   box-sizing: border-box;
@@ -29,11 +29,11 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1em;
-  border-bottom: 1px solid #636e7250;
+  border-bottom: 1px solid ${({ theme }) => theme.description}50;
   margin-bottom: 2em;
 `;
 
 export const Title = styled.h1`
   font-size: 1.4em;
-  color: #ff0075;
+  color: ${({ theme }) => theme.primary};
 `;

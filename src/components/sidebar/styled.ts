@@ -15,7 +15,7 @@ export const BoxProfile = styled.div`
   align-items: center;
   flex-direction: column;
   padding-bottom: 1em;
-  border-bottom: 1px solid #FF007561;
+  border-bottom: 1px solid ${({ theme }) => theme.primaryColor}61;
   margin-bottom: 2em;
 `;
 
@@ -25,34 +25,37 @@ export const Image = styled.div`
   margin-bottom: 1em;
   img {
     border-radius: 50%;
-    border: 2px solid #FF0075;
+    border: 2px solid ${({ theme }) => theme.primaryColor};
   }
 `;
 
 export const Name = styled.h4`
-  color: #FF0075;
+  color: ${({ theme }) => theme.title};
   margin: 0;
   margin-bottom: 0.5em;
   text-transform: capitalize;
 `;
 
 export const Type = styled.p`
-  color: #636e72;
+  color: ${({ theme }) => theme.description};
   margin: 0;
   font-size: 0.8em;
 `;
 
 export const Button = styled.button.attrs((props: any) => {})`
   border: none;
-  background-color: ${({ active }: any) =>
-    !!active ? "#334756" : "transparent"};
+  background-color: ${({ active, theme }) =>
+    !!active ? theme.card : "transparent"};
   border-radius: 12px;
   padding: 1.2em;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  color: #FF0075;
+  color: ${({ theme }) => theme.title};
   cursor: pointer;
+  svg {
+    color: ${({ theme }) => theme.title};
+  }
   span {
     font-weight: 600;
     margin-left: 1em;

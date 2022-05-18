@@ -1,33 +1,15 @@
 import { CreateContact } from "@/components/contacts";
 import { Card } from "@/components/contacts/card";
 import { Container } from "@/components/shared";
+import { useContact } from "@/hooks/useContact";
+import { Contact } from "@/types/contact";
 import { useState } from "react";
+import { useQueryClient } from "react-query";
 import * as S from "./styled";
 
-interface ContactProps {
+interface ContactScreenProps {
   title: string;
 }
-
-const mock = [
-  {
-    url: "https://statig1.akamaized.net/fw/a8/eu/gv/a8eugvqkaw1ldphsrgm54yj7n.jpg",
-    name: "Joao Silva",
-    email: "joaoasilva@gmail.com",
-    phone: "11942342342",
-    company: "Empresa 1",
-    active: false,
-    age: new Date(),
-  },
-  {
-    url: "https://statig1.akamaized.net/fw/a8/eu/gv/a8eugvqkaw1ldphsrgm54yj7n.jpg",
-    name: "Joao Silva",
-    email: "joaoasilva@gmail.com",
-    phone: "11942342342",
-    company: "Empresa 1",
-    active: false,
-    age: new Date(),
-  },
-];
 
 const animateListVariants = {
   hidden: { opacity: 1 },
@@ -48,15 +30,38 @@ const animateCardVariants = {
   },
 };
 
-const Contacts = (props: ContactProps) => {
-  const [showModal, setShowModal] = useState(false);
+const Contacts = (props: ContactScreenProps) => {
+  const { getContacts, removeContact } = useContact();
+  const { data: contactsList } = getContacts();
+  const queryClient = useQueryClient();
 
-  const handleCloseModal = () => setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
+  const [contactEdit, setContactEdit] = useState<Contact>({});
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setContactEdit({});
+  };
   const handleOpenModal = () => setShowModal(true);
+  const handleEditContact = (contact: Contact) => {
+    setContactEdit(contact);
+    handleOpenModal();
+  };
+
+  const handleRemoveContact = async (contact: Contact) => {
+    const { status } = await removeContact(contact);
+    if (status === 200) {
+      await queryClient.invalidateQueries(["contacts"]);
+    }
+  };
 
   return (
     <>
-      <CreateContact show={showModal} onClose={handleCloseModal} />
+      <CreateContact
+        show={showModal}
+        onClose={handleCloseModal}
+        contactEdit={contactEdit}
+      />
       <Container
         title={props.title}
         textButton="Novo contato"
@@ -68,16 +73,22 @@ const Contacts = (props: ContactProps) => {
           variants={animateListVariants}
         >
           <S.Header variants={animateCardVariants}>
-            <S.Text width="15%">Nome</S.Text>
-            <S.Text width="30%">E-mail</S.Text>
+            <S.Text width="20%">Nome</S.Text>
+            <S.Text width="25%">E-mail</S.Text>
             <S.Text width="15%">Empresa</S.Text>
             <S.Text width="15%">Telefone</S.Text>
             <S.Text width="11%">Idade</S.Text>
             <S.Text width="7%">Ativo</S.Text>
             <S.Text width="7%">Açōes</S.Text>
           </S.Header>
-          {mock.map((item) => (
-            <Card variants={animateCardVariants} {...item} />
+          {contactsList?.map((item: Contact) => (
+            <Card
+              key={item._id}
+              onEdit={() => handleEditContact(item)}
+              onRemove={() => handleRemoveContact(item)}
+              variants={animateCardVariants}
+              {...item}
+            />
           ))}
         </S.WrapperContacts>
       </Container>

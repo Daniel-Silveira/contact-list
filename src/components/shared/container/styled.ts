@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: #2C394B;
+  background: ${({ theme }) => theme.card};
   border-radius: 16px;
   padding: 1em;
   box-sizing: border-box;
@@ -17,10 +17,10 @@ export const Header = styled.div`
   justify-content: space-between;
   padding-bottom: 1em;
   margin-bottom: 2em;
-  border-bottom: 1px solid #636e7250;
+  border-bottom: 1px solid ${({ theme }) => theme.description}50;
 `;
 
 export const Title = styled.h1`
   font-size: 1.4em;
-  color: #FF0075;
+  color: ${({ theme }) => theme.title};
 `;

@@ -1,26 +1,26 @@
-import { FiMoreHorizontal, FiToggleLeft } from "react-icons/fi";
+import { convertDate } from "@/services/utils";
+import { Contact } from "@/types/contact";
+import { FiEdit, FiTrash } from "react-icons/fi";
 import { ActionButton } from "../../shared/actionButton";
 import * as S from "./styled";
 
-interface CardProps {
-  url: string;
-  name: string;
-  email: string;
-  phone: string;
-  company: string;
-  active: boolean;
-  age: Date;
+interface CardProps extends Contact {
   variants: any;
+  onEdit?: () => void;
+  onRemove?: () => void;
 }
+
+const noUser =
+  "https://i1.wp.com/terracoeconomico.com.br/wp-content/uploads/2019/01/default-user-image.png?ssl=1";
 
 export const Card = (props: CardProps) => {
   return (
     <S.Card variants={props.variants}>
-      <S.Wrapper width="15%">
-        <S.Avatar src={props.url} />
+      <S.Wrapper width="20%">
+        <S.Avatar src={props.url || noUser} />
         <S.Text>{props.name}</S.Text>
       </S.Wrapper>
-      <S.Wrapper width="30%">
+      <S.Wrapper width="25%">
         <S.Text>{props.email}</S.Text>
       </S.Wrapper>
       <S.Wrapper width="15%">
@@ -30,13 +30,14 @@ export const Card = (props: CardProps) => {
         <S.Text>{props.phone}</S.Text>
       </S.Wrapper>
       <S.Wrapper width="11%">
-        <S.Text>{new Date(props.age).getDay()} anos</S.Text>
+        <S.Text>{props.age} anos</S.Text>
       </S.Wrapper>
       <S.WrapperAction>
-        <ActionButton size="24px" icon={FiToggleLeft} />
+        <S.Text>{convertDate(props.createdAt)}</S.Text>
       </S.WrapperAction>
       <S.WrapperAction>
-        <ActionButton size="24px" icon={FiMoreHorizontal} />
+        <ActionButton size="24px" icon={FiEdit} onClick={props.onEdit} />
+        <ActionButton size="24px" icon={FiTrash} onClick={props.onRemove} />
       </S.WrapperAction>
     </S.Card>
   );

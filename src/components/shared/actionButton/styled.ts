@@ -14,6 +14,6 @@ export const Button = styled.button`
   justify-content: center;
 
   &:hover {
-    background-color: #636e721a;
+    background-color: ${({ theme }) => theme.description}70 ;
   }
 `;

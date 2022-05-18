@@ -3,6 +3,8 @@ import * as S from "./styled";
 interface PropsInput {
   margin?: [string, string];
   placeholder?: string;
+  value?: string;
+  onChangeValue?: (value: string) => void;
 }
 
 const marginConfig = (array: any) => {
@@ -13,8 +15,18 @@ const marginConfig = (array: any) => {
   return "margin: auto";
 };
 
-export const Input = ({ margin, ...rest }: PropsInput) => {
-  const marginRender = marginConfig(margin);
+export const Input = (props: PropsInput) => {
+  const marginRender = marginConfig(props?.margin);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    !!props.onChangeValue && props.onChangeValue(e.target.value);
+
   if (!marginRender) return null;
-  return <S.Input margin={marginRender} {...rest} />;
+  return (
+    <S.Input
+      marginConfig={marginRender}
+      onChange={onChange}
+      value={props.value}
+      placeholder={props.placeholder}
+    />
+  );
 };

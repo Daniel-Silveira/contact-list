@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { FiX } from "react-icons/fi";
 import { ActionButton } from "../actionButton";
 import * as S from "./styled";
