@@ -8,7 +8,7 @@ export const Button = styled.button`
   color: #fff;
   cursor: pointer;
   border-radius: 8px;
-  min-width: ${({ width }: { width: string }) => width || "30%"};
+  min-width: ${({ width }: { width?: string }) => width || "30%"};
   box-shadow: 0px 5px 10px rgba(29, 31, 41, 0.15);
 
   &:hover {

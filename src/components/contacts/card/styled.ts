@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
 
 export const Card = styled(motion.div)`
-  background: #082032;
+  background: ${({ theme }) => theme.background};
   border-radius: 8px;
   padding: 0.5em;
   box-sizing: border-box;
@@ -10,7 +10,7 @@ export const Card = styled(motion.div)`
   display: flex;
   align-items: center;
   margin: 0.7em 0;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px ${({ theme }) => theme.black}30;
 `;
 
 export const Avatar = styled.img`
@@ -36,5 +36,8 @@ export const WrapperAction = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #636e72;
+  color: ${({ theme }) => theme.description};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
