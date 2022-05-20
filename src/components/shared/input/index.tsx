@@ -5,6 +5,7 @@ interface PropsInput {
   placeholder?: string;
   value?: string;
   onChangeValue?: (value: string) => void;
+  "data-cy"?: string;
 }
 
 const marginConfig = (array: any) => {
@@ -27,6 +28,7 @@ export const Input = (props: PropsInput) => {
       onChange={onChange}
       value={props.value}
       placeholder={props.placeholder}
+      data-cy={props["data-cy"]}
     />
   );
 };

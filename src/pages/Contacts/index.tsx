@@ -66,6 +66,7 @@ const Contacts = (props: ContactScreenProps) => {
         title={props.title}
         textButton="Novo contato"
         onClick={handleOpenModal}
+        cyRefButton="newContactButton"
       >
         <S.WrapperContacts
           initial="hidden"
@@ -86,6 +87,8 @@ const Contacts = (props: ContactScreenProps) => {
               key={item._id}
               onEdit={() => handleEditContact(item)}
               onRemove={() => handleRemoveContact(item)}
+              cyRefEditButton="editContactButton"
+              cyRefRemoveButton="removeContactButton"
               variants={animateCardVariants}
               {...item}
             />

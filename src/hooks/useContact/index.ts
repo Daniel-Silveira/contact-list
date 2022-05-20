@@ -24,7 +24,7 @@ export const useContact = () => {
   };
 
   const removeContact = async (data: Contact) => {
-    const { status } = await http.delete(`/${PARTIAL_URL}/remove`, data);
+    const { status } = await http.delete(`/${PARTIAL_URL}/remove/${data._id}`, data);
     return { status };
   };
 

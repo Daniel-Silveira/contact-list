@@ -22,6 +22,7 @@ export const Container = styled(motion.div)`
   height: 60%;
   width: 50%;
   z-index: 10;
+  overflow-x: auto;
 `;
 
 export const Header = styled.div`

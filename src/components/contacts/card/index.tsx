@@ -5,9 +5,11 @@ import { ActionButton } from "../../shared/actionButton";
 import * as S from "./styled";
 
 interface CardProps extends Contact {
-  variants: any;
+  variants?: any;
   onEdit?: () => void;
   onRemove?: () => void;
+  cyRefEditButton?: string;
+  cyRefRemoveButton?: string;
 }
 
 const noUser =
@@ -15,7 +17,7 @@ const noUser =
 
 export const Card = (props: CardProps) => {
   return (
-    <S.Card variants={props.variants}>
+    <S.Card variants={props.variants} data-cy="card-contact">
       <S.Wrapper width="20%">
         <S.Avatar src={props.url || noUser} />
         <S.Text>{props.name}</S.Text>
@@ -33,11 +35,23 @@ export const Card = (props: CardProps) => {
         <S.Text>{props.age} anos</S.Text>
       </S.Wrapper>
       <S.WrapperAction>
-        <S.Text>{convertDate(props.createdAt)}</S.Text>
+        <S.Text data-testid="date">{convertDate(props.createdAt)}</S.Text>
       </S.WrapperAction>
       <S.WrapperAction>
-        <ActionButton size="24px" icon={FiEdit} onClick={props.onEdit} />
-        <ActionButton size="24px" icon={FiTrash} onClick={props.onRemove} />
+        <ActionButton
+          data-testid="edit"
+          size="24px"
+          icon={FiEdit}
+          onClick={props.onEdit}
+          data-cy={props.cyRefEditButton}
+        />
+        <ActionButton
+          data-testid="remove"
+          size="24px"
+          icon={FiTrash}
+          onClick={props.onRemove}
+          data-cy={props.cyRefRemoveButton}
+        />
       </S.WrapperAction>
     </S.Card>
   );

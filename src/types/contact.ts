@@ -5,7 +5,6 @@ export interface Contact {
   email?: string;
   phone?: string;
   company?: string;
-  active?: boolean;
   age?: string;
   createdAt?: Date;
 }

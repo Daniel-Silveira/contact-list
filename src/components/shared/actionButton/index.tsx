@@ -9,8 +9,8 @@ interface ButtonProps {
 export const ActionButton = (props: ButtonProps) => {
   const Icon = props.icon;
   return (
-    <S.Button onClick={props.onClick}>
-      <Icon size={props.size} />
+    <S.Button onClick={props.onClick} {...props}>
+      <Icon data-testid="icon" size={props.size} />
     </S.Button>
   );
 };

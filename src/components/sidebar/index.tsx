@@ -21,7 +21,7 @@ export const Sidebar = (props: SidebarProps) => {
   return (
     <Styled.Container>
       <Profile />
-      {props.data.map((item: PropsRoute) => (
+      {props.data?.map((item: PropsRoute) => (
         <Styled.Button
           key={item.path}
           active={!!isActive(item.path)}
@@ -40,9 +40,8 @@ const Profile = memo(() => (
     <Styled.Image>
       <img
         src={
-          !!user?.avatar
-            ? user?.avatar
-            : "https://img2.gratispng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
+          user?.avatar ||
+          "https://img2.gratispng.com/20180523/tha/kisspng-businessperson-computer-icons-avatar-clip-art-lattice-5b0508dc6a3a10.0013931115270566044351.jpg"
         }
         alt="profile"
       />

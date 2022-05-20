@@ -3,9 +3,10 @@ import * as S from "./styled";
 
 interface ContainerProps {
   children?: React.ReactNode;
-  title: string;
+  title?: string;
   textButton?: string;
   onClick?: () => void;
+  cyRefButton?: string;
 }
 
 export const Container = (props: ContainerProps) => {
@@ -13,7 +14,9 @@ export const Container = (props: ContainerProps) => {
     <S.Container>
       <S.Header>
         <S.Title>{props.title}</S.Title>
-        <Button text={props.textButton} onClick={props.onClick} width="15%" />
+        {!!props.textButton && (
+          <Button data-cy={props.cyRefButton} text={props.textButton} onClick={props.onClick} width="15%" />
+        )}
       </S.Header>
       {props.children}
     </S.Container>
