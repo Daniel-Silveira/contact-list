@@ -1,4 +1,4 @@
-import { colors } from "./colors";
+import { colors } from './colors'
 
 export const themeConfig = {
   primaryColor: colors.primaryColor,
@@ -9,4 +9,4 @@ export const themeConfig = {
   background: colors.secundaryColor,
   button: colors.black,
   overlay: colors.overlay,
-};
+}

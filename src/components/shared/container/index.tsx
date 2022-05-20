@@ -1,12 +1,12 @@
-import { Button } from "../button";
-import * as S from "./styled";
+import { Button } from '../button'
+import * as S from './styled'
 
 interface ContainerProps {
-  children?: React.ReactNode;
-  title?: string;
-  textButton?: string;
-  onClick?: () => void;
-  cyRefButton?: string;
+  children?: React.ReactNode
+  title?: string
+  textButton?: string
+  onClick?: () => void
+  cyRefButton?: string
 }
 
 export const Container = (props: ContainerProps) => {
@@ -20,5 +20,5 @@ export const Container = (props: ContainerProps) => {
       </S.Header>
       {props.children}
     </S.Container>
-  );
-};
+  )
+}

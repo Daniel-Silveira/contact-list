@@ -1,19 +1,18 @@
-import { convertDate } from "@/services/utils";
-import { Contact } from "@/types/contact";
-import { FiEdit, FiTrash } from "react-icons/fi";
-import { ActionButton } from "../../shared/actionButton";
-import * as S from "./styled";
+import { convertDate } from '@/services/utils'
+import { Contact } from '@/types/contact'
+import { FiEdit, FiTrash } from 'react-icons/fi'
+import { ActionButton } from '../../shared/actionButton'
+import * as S from './styled'
 
 interface CardProps extends Contact {
-  variants?: any;
-  onEdit?: () => void;
-  onRemove?: () => void;
-  cyRefEditButton?: string;
-  cyRefRemoveButton?: string;
+  variants?: any
+  onEdit?: () => void
+  onRemove?: () => void
+  cyRefEditButton?: string
+  cyRefRemoveButton?: string
 }
 
-const noUser =
-  "https://i1.wp.com/terracoeconomico.com.br/wp-content/uploads/2019/01/default-user-image.png?ssl=1";
+const noUser = 'https://i1.wp.com/terracoeconomico.com.br/wp-content/uploads/2019/01/default-user-image.png?ssl=1'
 
 export const Card = (props: CardProps) => {
   return (
@@ -54,5 +53,5 @@ export const Card = (props: CardProps) => {
         />
       </S.WrapperAction>
     </S.Card>
-  );
-};
+  )
+}

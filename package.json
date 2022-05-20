@@ -7,9 +7,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "jest",
-    "cypress": "cypress run",
-    "cypress:chrome": "cypress run -b chrome",
-    "cypress:open": "cypress open"
+    "cypress": "cypress install && cypress run",
+    "cypress:open": "cypress install && cypress open"
   },
   "dependencies": {
     "axios": "^0.27.2",

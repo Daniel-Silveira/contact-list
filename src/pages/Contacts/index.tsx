@@ -1,14 +1,14 @@
-import { CreateContact } from "@/components/contacts";
-import { Card } from "@/components/contacts/card";
-import { Container } from "@/components/shared";
-import { useContact } from "@/hooks/useContact";
-import { Contact } from "@/types/contact";
-import { useState } from "react";
-import { useQueryClient } from "react-query";
-import * as S from "./styled";
+import { CreateContact } from '@/components/contacts'
+import { Card } from '@/components/contacts/card'
+import { Container } from '@/components/shared'
+import { useContact } from '@/hooks/useContact'
+import { Contact } from '@/types/contact'
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
+import * as S from './styled'
 
 interface ContactScreenProps {
-  title: string;
+  title: string
 }
 
 const animateListVariants = {
@@ -20,7 +20,7 @@ const animateListVariants = {
       staggerChildren: 0.2,
     },
   },
-};
+}
 
 const animateCardVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -28,51 +28,38 @@ const animateCardVariants = {
     y: 0,
     opacity: 1,
   },
-};
+}
 
 const Contacts = (props: ContactScreenProps) => {
-  const { getContacts, removeContact } = useContact();
-  const { data: contactsList } = getContacts();
-  const queryClient = useQueryClient();
+  const { getContacts, removeContact } = useContact()
+  const { data: contactsList } = getContacts()
+  const queryClient = useQueryClient()
 
-  const [showModal, setShowModal] = useState(false);
-  const [contactEdit, setContactEdit] = useState<Contact>({});
+  const [showModal, setShowModal] = useState(false)
+  const [contactEdit, setContactEdit] = useState<Contact>({})
 
   const handleCloseModal = () => {
-    setShowModal(false);
-    setContactEdit({});
-  };
-  const handleOpenModal = () => setShowModal(true);
+    setShowModal(false)
+    setContactEdit({})
+  }
+  const handleOpenModal = () => setShowModal(true)
   const handleEditContact = (contact: Contact) => {
-    setContactEdit(contact);
-    handleOpenModal();
-  };
+    setContactEdit(contact)
+    handleOpenModal()
+  }
 
   const handleRemoveContact = async (contact: Contact) => {
-    const { status } = await removeContact(contact);
+    const { status } = await removeContact(contact)
     if (status === 200) {
-      await queryClient.invalidateQueries(["contacts"]);
+      await queryClient.invalidateQueries(['contacts'])
     }
-  };
+  }
 
   return (
     <>
-      <CreateContact
-        show={showModal}
-        onClose={handleCloseModal}
-        contactEdit={contactEdit}
-      />
-      <Container
-        title={props.title}
-        textButton="Novo contato"
-        onClick={handleOpenModal}
-        cyRefButton="newContactButton"
-      >
-        <S.WrapperContacts
-          initial="hidden"
-          animate="visible"
-          variants={animateListVariants}
-        >
+      <CreateContact show={showModal} onClose={handleCloseModal} contactEdit={contactEdit} />
+      <Container title={props.title} textButton="Novo contato" onClick={handleOpenModal} cyRefButton="newContactButton">
+        <S.WrapperContacts initial="hidden" animate="visible" variants={animateListVariants}>
           <S.Header variants={animateCardVariants}>
             <S.Text width="20%">Nome</S.Text>
             <S.Text width="25%">E-mail</S.Text>
@@ -96,7 +83,7 @@ const Contacts = (props: ContactScreenProps) => {
         </S.WrapperContacts>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts

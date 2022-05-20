@@ -1,13 +1,13 @@
-import Contacts from "@/pages/Contacts";
-import { FiUsers } from "react-icons/fi";
+import Contacts from '@/pages/Contacts'
+import { FiUsers } from 'react-icons/fi'
 
 const sidebarRoutes = [
   {
-    path: "/",
+    path: '/',
     main: Contacts,
-    title: "Contatos",
+    title: 'Contatos',
     icon: FiUsers,
   },
-];
+]
 
-export default sidebarRoutes;
+export default sidebarRoutes

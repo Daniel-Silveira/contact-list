@@ -1,95 +1,95 @@
-import { Button, Input, Modal } from "@/components/shared";
-import { useContact } from "@/hooks/useContact";
+import { Button, Input, Modal } from '@/components/shared'
+import { useContact } from '@/hooks/useContact'
 
-import { Contact } from "@/types/contact";
-import { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
-import * as S from "./styled";
+import { Contact } from '@/types/contact'
+import { useEffect, useState } from 'react'
+import { useQueryClient } from 'react-query'
+import * as S from './styled'
 
 interface CreateContactProps {
-  show: boolean;
-  onClose: () => void;
-  contactEdit?: Contact;
+  show: boolean
+  onClose: () => void
+  contactEdit?: Contact
 }
 
 export const CreateContact = (props: CreateContactProps) => {
-  const { createContact, editContact } = useContact();
-  const queryClient = useQueryClient();
+  const { createContact, editContact } = useContact()
+  const queryClient = useQueryClient()
 
-  const [contact, setContact] = useState<Contact>({});
+  const [contact, setContact] = useState<Contact>({})
 
   const handleChangeState = (value: string, key: string) => {
-    setContact({ ...contact, [key]: value });
-    return;
-  };
+    setContact({ ...contact, [key]: value })
+    return
+  }
 
   useEffect(() => {
     if (props.contactEdit) {
-      setContact(props.contactEdit);
+      setContact(props.contactEdit)
     }
-  }, [props.contactEdit]);
+  }, [props.contactEdit])
 
   const handleNewContact = async () => {
-    const { status } = await createContact(contact);
+    const { status } = await createContact(contact)
     if (status === 201) {
-      await queryClient.invalidateQueries(["contacts"]);
-      props.onClose();
+      await queryClient.invalidateQueries(['contacts'])
+      props.onClose()
     }
-  };
+  }
 
   const handleEditContact = async () => {
-    const { status } = await editContact(contact);
+    const { status } = await editContact(contact)
     if (status === 200) {
-      await queryClient.invalidateQueries(["contacts"]);
-      props.onClose();
+      await queryClient.invalidateQueries(['contacts'])
+      props.onClose()
     }
-  };
+  }
 
   return (
     <Modal
-      title={props.contactEdit ? "Editar contato" : "Criar novo contato"}
+      title={props.contactEdit ? 'Editar contato' : 'Criar novo contato'}
       show={props.show}
       onClose={props.onClose}
     >
       <Input
         placeholder="Nome"
         value={contact.name}
-        onChangeValue={(value) => handleChangeState(value, "name")}
+        onChangeValue={value => handleChangeState(value, 'name')}
         data-cy="inputName"
       />
       <Input
         placeholder="E-mail"
-        margin={["top", "1em"]}
+        margin={['top', '1em']}
         value={contact.email}
-        onChangeValue={(value) => handleChangeState(value, "email")}
+        onChangeValue={value => handleChangeState(value, 'email')}
         data-cy="inputEmail"
       />
       <Input
         placeholder="Empresa"
-        margin={["top", "1em"]}
+        margin={['top', '1em']}
         value={contact.company}
-        onChangeValue={(value) => handleChangeState(value, "company")}
+        onChangeValue={value => handleChangeState(value, 'company')}
         data-cy="inputCompany"
       />
       <Input
         placeholder="URL da foto"
-        margin={["top", "1em"]}
+        margin={['top', '1em']}
         value={contact.url}
-        onChangeValue={(value) => handleChangeState(value, "url")}
+        onChangeValue={value => handleChangeState(value, 'url')}
         data-cy="inputUrl"
       />
       <S.GroupInputModal>
         <Input
           placeholder="Telefone"
           value={contact.phone}
-          onChangeValue={(value) => handleChangeState(value, "phone")}
+          onChangeValue={value => handleChangeState(value, 'phone')}
           data-cy="inputPhone"
         />
         <Input
           placeholder="Idade"
-          margin={["left", "1em"]}
+          margin={['left', '1em']}
           value={contact.age}
-          onChangeValue={(value) => handleChangeState(value, "age")}
+          onChangeValue={value => handleChangeState(value, 'age')}
           data-cy="inputAge"
         />
       </S.GroupInputModal>
@@ -97,11 +97,9 @@ export const CreateContact = (props: CreateContactProps) => {
         <Button
           text="Salvar"
           data-cy="saveContact"
-          onClick={
-            !!props.contactEdit?._id ? handleEditContact : handleNewContact
-          }
+          onClick={!!props.contactEdit?._id ? handleEditContact : handleNewContact}
         />
       </S.WrapperButtonModal>
     </Modal>
-  );
-};
+  )
+}

@@ -1,17 +1,17 @@
-import { FiX } from "react-icons/fi";
-import { ActionButton } from "../actionButton";
-import * as S from "./styled";
+import { FiX } from 'react-icons/fi'
+import { ActionButton } from '../actionButton'
+import * as S from './styled'
 
 interface ModalProps {
-  children?: React.ReactNode;
-  title: string;
-  onClose?: () => void;
-  show: boolean;
+  children?: React.ReactNode
+  title: string
+  onClose?: () => void
+  show: boolean
 }
 
 export const Modal = (props: ModalProps) => {
   if (!props.show) {
-    return null;
+    return null
   }
   return (
     <>
@@ -20,7 +20,7 @@ export const Modal = (props: ModalProps) => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 260,
             damping: 20,
           }}
@@ -33,5 +33,5 @@ export const Modal = (props: ModalProps) => {
         </S.Container>
       </S.Overlay>
     </>
-  );
-};
+  )
+}

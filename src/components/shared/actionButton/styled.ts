@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Button = styled.button`
   outline: none;
@@ -8,12 +8,12 @@ export const Button = styled.button`
   border-radius: 100px;
   width: 30px;
   height: 30px;
-  transition: .2s;
+  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    background-color: ${({ theme }) => theme.description}70 ;
+    background-color: ${({ theme }) => theme.description}70;
   }
-`;
+`

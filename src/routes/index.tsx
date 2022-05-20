@@ -1,15 +1,15 @@
-import { Sidebar } from "@/components/sidebar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import sidebarRoutes from "./sidebar";
-import { PropsRoute } from "./types";
+import { Sidebar } from '@/components/sidebar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import sidebarRoutes from './sidebar'
+import { PropsRoute } from './types'
 
 const RouteConfig = () => {
   return (
     <div
       style={{
         flex: 1,
-        display: "flex",
-        boxSizing: "border-box",
+        display: 'flex',
+        boxSizing: 'border-box',
       }}
     >
       <Router>
@@ -17,18 +17,12 @@ const RouteConfig = () => {
         <Routes>
           {sidebarRoutes.map(
             (route: PropsRoute) =>
-              !!route.main && (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={<route.main title={route.title} />}
-                />
-              )
+              !!route.main && <Route key={route.path} path={route.path} element={<route.main title={route.title} />} />
           )}
         </Routes>
       </Router>
     </div>
-  );
-};
+  )
+}
 
-export default RouteConfig;
+export default RouteConfig

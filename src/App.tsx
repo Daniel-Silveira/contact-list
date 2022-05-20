@@ -1,9 +1,9 @@
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ThemeProvider } from "styled-components";
-import RouteConfig from "./routes";
-import { themeConfig } from "./theme/index";
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ThemeProvider } from 'styled-components'
+import RouteConfig from './routes'
+import { themeConfig } from './theme/index'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <RouteConfig />
       </ThemeProvider>
     </QueryClientProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

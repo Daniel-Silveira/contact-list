@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.card};
@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 75%;
   margin-top: 5vh;
   overflow-y: auto;
-`;
+`
 
 export const Header = styled.div`
   display: flex;
@@ -18,9 +18,9 @@ export const Header = styled.div`
   padding-bottom: 1em;
   margin-bottom: 2em;
   border-bottom: 1px solid ${({ theme }) => theme.description}50;
-`;
+`
 
 export const Title = styled.h1`
   font-size: 1.4em;
   color: ${({ theme }) => theme.title};
-`;
+`

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const Input = styled.input`
   outline: none;
@@ -18,4 +18,4 @@ export const Input = styled.input`
     css`
       ${marginConfig}
     `}
-`;
+`
