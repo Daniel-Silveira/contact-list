@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `yarn install`
 
-Install required project dependencies.\
+Install required project dependencies.
 
 ### `yarn dev`
 
@@ -20,12 +20,12 @@ You will also see any lint errors in the console.
 
 ### `yarn test`
 
-Run unit tests with Jest.\
+Run unit tests with Jest.
 
 ### `yarn cypress`
 
-Run e2s tests with cypress.\
+Run e2s tests with cypress.
 
 ### `yarn build`
 
-Builds the app for production to the `dist` folder.\
+Builds the app for production to the `dist` folder.
