@@ -12,7 +12,7 @@ const RouteConfig = () => {
         boxSizing: 'border-box',
       }}
     >
-      <Router>
+      <Router basename="/list-contacts">
         <Sidebar data={sidebarRoutes} />
         <Routes>
           {sidebarRoutes.map(
