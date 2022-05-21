@@ -10,6 +10,7 @@ interface CardProps extends Contact {
   onRemove?: () => void
   cyRefEditButton?: string
   cyRefRemoveButton?: string
+  loading?: boolean
 }
 
 const noUser = 'https://i1.wp.com/terracoeconomico.com.br/wp-content/uploads/2019/01/default-user-image.png?ssl=1'
@@ -30,12 +31,12 @@ export const Card = (props: CardProps) => {
       <S.Wrapper width="15%">
         <S.Text>{props.phone}</S.Text>
       </S.Wrapper>
-      <S.Wrapper width="11%">
-        <S.Text>{props.age} anos</S.Text>
+      <S.Wrapper width="7%">
+        <S.Text>{props.age}</S.Text>
       </S.Wrapper>
-      <S.WrapperAction>
+      <S.Wrapper width="11%">
         <S.Text data-testid="date">{convertDate(props.createdAt)}</S.Text>
-      </S.WrapperAction>
+      </S.Wrapper>
       <S.WrapperAction>
         <ActionButton
           data-testid="edit"
@@ -50,6 +51,7 @@ export const Card = (props: CardProps) => {
           icon={FiTrash}
           onClick={props.onRemove}
           data-cy={props.cyRefRemoveButton}
+          loading={props.loading}
         />
       </S.WrapperAction>
     </S.Card>

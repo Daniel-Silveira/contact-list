@@ -1,6 +1,7 @@
 import { CreateContact } from '@/components/contacts'
 import { Card } from '@/components/contacts/card'
 import { Container } from '@/components/shared'
+import { Loading } from '@/components/shared/loading'
 import { useContact } from '@/hooks/useContact'
 import { Contact } from '@/types/contact'
 import { useState } from 'react'
@@ -37,6 +38,7 @@ const Contacts = (props: ContactScreenProps) => {
 
   const [showModal, setShowModal] = useState(false)
   const [contactEdit, setContactEdit] = useState<Contact>({})
+  const [loading, setLoading] = useState<any>('')
 
   const handleCloseModal = () => {
     setShowModal(false)
@@ -49,6 +51,7 @@ const Contacts = (props: ContactScreenProps) => {
   }
 
   const handleRemoveContact = async (contact: Contact) => {
+    setLoading(contact._id)
     const { status } = await removeContact(contact)
     if (status === 200) {
       await queryClient.invalidateQueries(['contacts'])
@@ -58,15 +61,21 @@ const Contacts = (props: ContactScreenProps) => {
   return (
     <>
       <CreateContact show={showModal} onClose={handleCloseModal} contactEdit={contactEdit} />
-      <Container title={props.title} textButton="Novo contato" onClick={handleOpenModal} cyRefButton="newContactButton">
+      <Container
+        title={props.title}
+        description={!contactsList && <Loading />}
+        textButton="Novo contato"
+        onClick={handleOpenModal}
+        cyRefButton="newContactButton"
+      >
         <S.WrapperContacts initial="hidden" animate="visible" variants={animateListVariants}>
           <S.Header variants={animateCardVariants}>
             <S.Text width="20%">Nome</S.Text>
             <S.Text width="25%">E-mail</S.Text>
             <S.Text width="15%">Empresa</S.Text>
             <S.Text width="15%">Telefone</S.Text>
-            <S.Text width="11%">Idade</S.Text>
-            <S.Text width="7%">Ativo</S.Text>
+            <S.Text width="7%">Idade</S.Text>
+            <S.Text width="11%">Criado em</S.Text>
             <S.Text width="7%">Açōes</S.Text>
           </S.Header>
           {contactsList?.map((item: Contact) => (
@@ -77,6 +86,7 @@ const Contacts = (props: ContactScreenProps) => {
               cyRefEditButton="editContactButton"
               cyRefRemoveButton="removeContactButton"
               variants={animateCardVariants}
+              loading={loading === item._id}
               {...item}
             />
           ))}

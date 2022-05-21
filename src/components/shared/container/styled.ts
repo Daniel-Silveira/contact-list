@@ -20,7 +20,13 @@ export const Header = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.description}50;
 `
 
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const Title = styled.h1`
   font-size: 1.4em;
   color: ${({ theme }) => theme.title};
+  margin-right: 0.5em;
 `

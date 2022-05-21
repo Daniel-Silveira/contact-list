@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { PropsRoute } from '../../routes/types'
 import * as Styled from './styled'
 
@@ -11,7 +11,8 @@ const user: any = {
 
 export const Sidebar = (props: SidebarProps) => {
   const navigate = useNavigate()
-  const isActive = (name: any) => window.location.pathname === name
+  const { pathname } = useLocation()
+  const isActive = (name: any) => pathname === name
 
   const handleNavigate = (path: string) => {
     navigate(path)

@@ -14,9 +14,11 @@ interface CreateContactProps {
 
 export const CreateContact = (props: CreateContactProps) => {
   const { createContact, editContact } = useContact()
+
   const queryClient = useQueryClient()
 
-  const [contact, setContact] = useState<Contact>({})
+  const [contact, setContact] = useState<Contact>({ name: '', email: '', phone: '', age: '', url: '', company: '' })
+  const [loading, setLoading] = useState(false)
 
   const handleChangeState = (value: string, key: string) => {
     setContact({ ...contact, [key]: value })
@@ -24,12 +26,14 @@ export const CreateContact = (props: CreateContactProps) => {
   }
 
   useEffect(() => {
-    if (props.contactEdit) {
+    if (props.contactEdit?._id) {
       setContact(props.contactEdit)
     }
+    setLoading(false)
   }, [props.contactEdit])
 
   const handleNewContact = async () => {
+    setLoading(true)
     const { status } = await createContact(contact)
     if (status === 201) {
       await queryClient.invalidateQueries(['contacts'])
@@ -38,6 +42,7 @@ export const CreateContact = (props: CreateContactProps) => {
   }
 
   const handleEditContact = async () => {
+    setLoading(true)
     const { status } = await editContact(contact)
     if (status === 200) {
       await queryClient.invalidateQueries(['contacts'])
@@ -95,6 +100,7 @@ export const CreateContact = (props: CreateContactProps) => {
       </S.GroupInputModal>
       <S.WrapperButtonModal>
         <Button
+          loading={loading}
           text="Salvar"
           data-cy="saveContact"
           onClick={!!props.contactEdit?._id ? handleEditContact : handleNewContact}

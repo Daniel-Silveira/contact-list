@@ -19,7 +19,7 @@ export const Container = styled(motion.div)`
   border-radius: 16px;
   padding: 1em;
   box-sizing: border-box;
-  height: 60%;
+  max-height: 65%;
   width: 50%;
   z-index: 10;
   overflow-x: auto;
